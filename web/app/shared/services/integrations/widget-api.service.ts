@@ -15,7 +15,7 @@ export class WidgetApiService extends AuthedApi {
     }
 
     public isEmbeddable(url: string): Promise<any> { // 200 = success, anything else = error
-        return this.http.get("/api/v1/dimension/widgets/embeddable", {params: {url: url}})
+        return this.http.get("/_dimension/api/v1/dimension/widgets/embeddable", {params: {url: url}})
             .map(r => r.json()).toPromise();
     }
 }

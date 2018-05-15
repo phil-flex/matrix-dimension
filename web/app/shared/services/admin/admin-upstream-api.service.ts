@@ -10,11 +10,11 @@ export class AdminUpstreamApiService extends AuthedApi {
     }
 
     public getUpstreams(): Promise<FE_Upstream[]> {
-        return this.authedGet("/api/v1/dimension/admin/upstreams/all").map(r => r.json()).toPromise();
+        return this.authedGet("/_dimension/api/v1/dimension/admin/upstreams/all").map(r => r.json()).toPromise();
     }
 
     public newUpstream(name: string, type: string, scalarUrl: string, apiUrl: string): Promise<FE_Upstream> {
-        return this.authedPost("/api/v1/dimension/admin/upstreams/new", {
+        return this.authedPost("/_dimension/api/v1/dimension/admin/upstreams/new", {
             name: name,
             type: type,
             scalarUrl: scalarUrl,

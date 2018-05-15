@@ -21,7 +21,7 @@ export interface IntegrationsResponse {
 /**
  * API for managing integrations, primarily for a given room
  */
-@Path("/api/v1/dimension/integrations")
+@Path("/_dimension/api/v1/dimension/integrations")
 export class DimensionIntegrationsService {
 
     /**

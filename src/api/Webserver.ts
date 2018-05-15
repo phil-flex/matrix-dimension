@@ -23,6 +23,8 @@ export default class Webserver {
     }
 
     private loadRoutes() {
+        this.app.set('base', '/_dimension');//For external knowing that the base is /_dimension????
+
         const apis = ["scalar", "dimension", "admin", "matrix"].map(a => path.join(__dirname, a, "*.js"));
         const router = express.Router();
         apis.forEach(a => Server.loadServices(router, [a]));
@@ -54,9 +56,10 @@ export default class Webserver {
     }
 
     private configure() {
-        this.app.use(express.static(path.join(__dirname, "..", "..", "web")));
-        this.app.use(bodyParser.json());
-        this.app.use((req, _res, next) => {
+        this.app.use('/_dimension', express.static(path.join(__dirname, "..", "..", "web")));//Works
+        //this.app.use(express.static(path.join(__dirname, "..", "..", "web")));
+        this.app.use('/_dimension', bodyParser.json());
+        this.app.use('/_dimension', (req, _res, next) => {
             const parsedUrl = URL.parse(req.url, true);
             if (parsedUrl.query && parsedUrl.query["scalar_token"]) {
                 parsedUrl.query["scalar_token"] = "redacted";
@@ -65,7 +68,7 @@ export default class Webserver {
             LogService.info("Webserver", "Incoming request: " + req.method + " " + URL.format(parsedUrl));
             next();
         });
-        this.app.use((_req, res, next) => {
+        this.app.use('/_dimension', (_req, res, next) => {
             res.setHeader("Access-Control-Allow-Origin", "*");
             res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             next();

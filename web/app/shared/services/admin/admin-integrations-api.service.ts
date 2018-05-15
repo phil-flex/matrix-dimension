@@ -10,18 +10,18 @@ export class AdminIntegrationsApiService extends AuthedApi {
     }
 
     public getAllWidgets(): Promise<FE_Widget[]> {
-        return this.authedGet("/api/v1/dimension/admin/integrations/widget/all").map(r => r.json()).toPromise();
+        return this.authedGet("/_dimension/api/v1/dimension/admin/integrations/widget/all").map(r => r.json()).toPromise();
     }
 
     public getAllBridges(): Promise<FE_Bridge<any>[]> {
-        return this.authedGet("/api/v1/dimension/admin/integrations/bridge/all").map(r => r.json()).toPromise();
+        return this.authedGet("/_dimension/api/v1/dimension/admin/integrations/bridge/all").map(r => r.json()).toPromise();
     }
 
     public toggleIntegration(category: string, type: string, enabled: boolean): Promise<any> {
-        return this.authedPost("/api/v1/dimension/admin/integrations/" + category + "/" + type + "/enabled", {enabled: enabled}).map(r => r.json()).toPromise();
+        return this.authedPost("/_dimension/api/v1/dimension/admin/integrations/" + category + "/" + type + "/enabled", {enabled: enabled}).map(r => r.json()).toPromise();
     }
 
     public setIntegrationOptions(category: string, type: string, options: any): Promise<any> {
-        return this.authedPost("/api/v1/dimension/admin/integrations/" + category + "/" + type + "/options", {options: options}).map(r => r.json()).toPromise();
+        return this.authedPost("/_dimension/api/v1/dimension/admin/integrations/" + category + "/" + type + "/options", {options: options}).map(r => r.json()).toPromise();
     }
 }

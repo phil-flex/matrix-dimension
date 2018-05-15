@@ -10,14 +10,14 @@ export class AdminApiService extends AuthedApi {
     }
 
     public isAdmin(): Promise<any> {
-        return this.authedGet("/api/v1/dimension/admin/check").map(r => r.json()).toPromise();
+        return this.authedGet("/_dimension/api/v1/dimension/admin/check").map(r => r.json()).toPromise();
     }
 
     public getConfig(): Promise<FE_DimensionConfig> {
-        return this.authedGet("/api/v1/dimension/admin/config").map(r => r.json()).toPromise();
+        return this.authedGet("/_dimension/api/v1/dimension/admin/config").map(r => r.json()).toPromise();
     }
 
     public getVersion(): Promise<FE_DimensionVersion> {
-        return this.authedGet("/api/v1/dimension/admin/version").map(r => r.json()).toPromise();
+        return this.authedGet("/_dimension/api/v1/dimension/admin/version").map(r => r.json()).toPromise();
     }
 }

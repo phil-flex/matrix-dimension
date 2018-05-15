@@ -21,7 +21,7 @@ interface UrlPreviewResponse {
 /**
  * API for the minimum Scalar API for widget functionality in clients.
  */
-@Path("/api/v1/scalar/widgets")
+@Path("/_dimension/api/v1/scalar/widgets")
 export class ScalarWidgetService {
 
     @GET

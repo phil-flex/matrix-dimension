@@ -12,7 +12,7 @@ interface SetEnabledRequest {
 /**
  * Administrative API for configuring stickers
  */
-@Path("/api/v1/dimension/admin/stickers")
+@Path("/_dimension/api/v1/dimension/admin/stickers")
 export class AdminStickerService {
 
     @GET

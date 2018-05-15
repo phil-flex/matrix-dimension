@@ -23,7 +23,7 @@ interface SetEnabledRequest {
 /**
  * Administrative API for configuring go-neb instances.
  */
-@Path("/api/v1/dimension/admin/neb")
+@Path("/_dimension/api/v1/dimension/admin/neb")
 export class AdminNebService {
 
     @GET

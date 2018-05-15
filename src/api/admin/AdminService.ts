@@ -24,7 +24,7 @@ interface DimensionConfigResponse {
 /**
  * Administrative API for general information about Dimension
  */
-@Path("/api/v1/dimension/admin")
+@Path("/_dimension/api/v1/dimension/admin")
 export class AdminService {
 
     /**

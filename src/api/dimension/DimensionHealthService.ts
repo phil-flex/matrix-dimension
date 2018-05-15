@@ -4,7 +4,7 @@ import { LogService } from "matrix-js-snippets";
 /**
  * API for the health of Dimension
  */
-@Path("/api/v1/dimension/health")
+@Path("/_dimension/api/v1/dimension/health")
 export class DimensionHealthService {
 
     @GET

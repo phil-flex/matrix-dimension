@@ -12,7 +12,7 @@ interface RequestLinkRequest {
 /**
  * API for interacting with the IRC bridge
  */
-@Path("/api/v1/dimension/irc")
+@Path("/_dimension/api/v1/dimension/irc")
 export class DimensionIrcService {
 
     @GET

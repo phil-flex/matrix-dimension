@@ -31,7 +31,7 @@ interface SetEnabledRequest {
 /**
  * Administrative API for configuring IRC bridge instances.
  */
-@Path("/api/v1/dimension/admin/irc")
+@Path("/_dimension/api/v1/dimension/admin/irc")
 export class AdminIrcService {
 
     @GET

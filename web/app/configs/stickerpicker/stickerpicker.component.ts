@@ -70,7 +70,7 @@ export class StickerpickerComponent implements OnInit {
             await this.scalarClient.setUserWidget({
                 id: "dimension-stickerpicker-" + (new Date().getTime()),
                 type: WIDGET_STICKER_PICKER[0],
-                url: this.window.location.origin + "/widgets/stickerpicker",
+                url: this.window.location.origin + "/_dimension/widgets/stickerpicker",
                 data: {
                     dimension: {
                         wrapperId: "stickerpicker",

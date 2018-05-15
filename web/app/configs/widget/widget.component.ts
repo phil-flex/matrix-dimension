@@ -39,7 +39,7 @@ export class WidgetComponent implements OnInit {
 
     public ngOnInit(): void {
         if (this.wrapperId) {
-            this.wrapperUrl = this.window.location.origin + "/widgets/" + this.wrapperId + "?url=";
+            this.wrapperUrl = this.window.location.origin + "/_dimension/widgets/" + this.wrapperId + "?url=";
 
             if (!this.scalarWrapperId) this.scalarWrapperId = this.wrapperId;
             for (let widgetLink of SCALAR_WIDGET_LINKS) {
@@ -140,7 +140,7 @@ export class WidgetComponent implements OnInit {
             id: "dimension-" + this.widgetTypes[0] + "-" + (new Date().getTime()),
             type: this.widgetTypes[0],
             name: this.defaultName,
-            url: window.location.origin,
+            url: window.location.origin + '/_dimension/',
             ownerId: SessionStorage.userId,
             dimension: {
                 newUrl: "",

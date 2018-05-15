@@ -10,6 +10,6 @@ export class ScalarServerApiService extends AuthedApi {
     }
 
     public getAccount(): Promise<FE_ScalarAccountResponse> {
-        return this.authedGet("/api/v1/scalar/account").map(res => res.json()).toPromise();
+        return this.authedGet("/_dimension/api/v1/scalar/account").map(res => res.json()).toPromise();
     }
 }

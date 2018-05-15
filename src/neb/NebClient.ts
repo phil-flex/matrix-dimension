@@ -70,8 +70,12 @@ export class NebClient {
     }
 
     private doRequest<T>(endpoint: string, body: any): Promise<T> {
-        const adminUrl = (this.neb.adminUrl.endsWith("/") ? this.neb.adminUrl.substring(0, this.neb.adminUrl.length - 1) : this.neb.adminUrl);
-        if (!endpoint.startsWith("/")) endpoint = "/" + endpoint;
+        //const adminUrl = (this.neb.adminUrl.endsWith("/") ? this.neb.adminUrl.substring(0, this.neb.adminUrl.length - 1) : this.neb.adminUrl);
+        //HACK: Try change the default path
+        const adminUrl = (this.neb.adminUrl.endsWith("/") ? "/_dimension/"+this.neb.adminUrl.substring(0, this.neb.adminUrl.length - 1) : this.neb.adminUrl);
+        //if (!endpoint.startsWith("/")) endpoint = "/" + endpoint;
+        //HACK: Try changing the default Path
+        if (!endpoint.startsWith("/")) endpoint = "/_dimension/" + endpoint;
         LogService.info("NebClient", "Doing NEB call: " + adminUrl + endpoint);
 
         return new Promise((resolve, reject) => {

@@ -18,7 +18,7 @@ export default {
                 {
                     type: "custom",
                     name: "Custom Widget",
-                    avatarUrl: "/img/avatars/customwidget.png",
+                    avatarUrl: "/_dimension/img/avatars/customwidget.png",
                     isEnabled: true,
                     isPublic: true,
                     description: "A webpage embedded in the room.",
@@ -26,7 +26,7 @@ export default {
                 {
                     type: "etherpad",
                     name: "Etherpad",
-                    avatarUrl: "/img/avatars/etherpad.png",
+                    avatarUrl: "/_dimension/img/avatars/etherpad.png",
                     isEnabled: true,
                     isPublic: true,
                     description: "Collaborate on documents with members of your room.",
@@ -37,7 +37,7 @@ export default {
                     name: "Google Calendar",
                     isEnabled: true,
                     isPublic: true,
-                    avatarUrl: "/img/avatars/googlecalendar.png",
+                    avatarUrl: "/_dimension/img/avatars/googlecalendar.png",
                     description: "Share upcoming events in your room with a Google Calendar.",
                 },
                 {
@@ -45,7 +45,7 @@ export default {
                     name: "Google Docs",
                     isEnabled: true,
                     isPublic: true,
-                    avatarUrl: "/img/avatars/googledocs.png",
+                    avatarUrl: "/_dimension/img/avatars/googledocs.png",
                     description: "Collaborate on and share documents using Google Docs.",
                 },
                 {
@@ -53,7 +53,7 @@ export default {
                     name: "YouTube Video",
                     isEnabled: true,
                     isPublic: true,
-                    avatarUrl: "/img/avatars/youtube.png",
+                    avatarUrl: "/_dimension/img/avatars/youtube.png",
                     description: "Embed a YouTube, Vimeo, or DailyMotion video in your room.",
                 },
                 {
@@ -61,7 +61,7 @@ export default {
                     name: "Twitch Livestream",
                     isEnabled: true,
                     isPublic: true,
-                    avatarUrl: "/img/avatars/twitch.png",
+                    avatarUrl: "/_dimension/img/avatars/twitch.png",
                     description: "Embed a Twitch livestream into your room.",
                 },
                 {
@@ -69,7 +69,7 @@ export default {
                     name: "Jitsi Conference",
                     isEnabled: true,
                     isPublic: true,
-                    avatarUrl: "/img/avatars/jitsi.png",
+                    avatarUrl: "/_dimension/img/avatars/jitsi.png",
                     description: "Hold a video conference with Jitsi Meet",
                     optionsJson: '{"jitsiDomain":"jitsi.riot.im", "scriptUrl":"https://jitsi.riot.im/libs/external_api.min.js"}',
                 },

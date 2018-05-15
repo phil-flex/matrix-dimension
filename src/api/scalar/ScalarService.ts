@@ -23,7 +23,7 @@ interface RegisterRequest {
  * API for the minimum Scalar API we need to implement to be compatible with clients. Used for registration
  * and general account management.
  */
-@Path("/api/v1/scalar")
+@Path("/_dimension/api/v1/scalar")
 export class ScalarService {
 
     /**

@@ -48,7 +48,7 @@ interface SetSelectedRequest {
 /**
  * API for stickers
  */
-@Path("/api/v1/dimension/stickers")
+@Path("/_dimension/api/v1/dimension/stickers")
 export class DimensionStickerService {
 
     public static async getStickerPacks(enabledOnly = false): Promise<MemoryStickerPack[]> {

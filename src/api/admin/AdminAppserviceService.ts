@@ -20,7 +20,7 @@ interface AppserviceCreateRequest {
 /**
  * Administrative API for managing the appservices that Dimension operates.
  */
-@Path("/api/v1/dimension/admin/appservices")
+@Path("/_dimension/api/v1/dimension/admin/appservices")
 export class AdminAppserviceService {
 
     @GET

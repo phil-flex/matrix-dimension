@@ -84,6 +84,6 @@ export class JitsiWidgetConfigComponent extends WidgetComponent {
         });
         widgetQueryString = this.decodeParams(widgetQueryString, Object.keys(widget.dimension.newData).map(k => "$" + k));
 
-        widget.dimension.newUrl = window.location.origin + "/widgets/jitsi" + widgetQueryString;
+        widget.dimension.newUrl = window.location.origin + "/_dimension/widgets/jitsi" + widgetQueryString;
     }
 }

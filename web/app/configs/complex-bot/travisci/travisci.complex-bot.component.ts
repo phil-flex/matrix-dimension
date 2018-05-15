@@ -34,7 +34,7 @@ export class TravisCiComplexBotConfigComponent extends ComplexBotComponent<Travi
     public get webhookUrl(): string {
         if (!this.newConfig) return "not specified";
 
-        return window.location.origin + "/api/v1/dimension/webhooks/travisci/" + this.newConfig.webhookId;
+        return window.location.origin + "/_dimension/api/v1/dimension/webhooks/travisci/" + this.newConfig.webhookId;
     }
 
     public get travisYaml(): string {

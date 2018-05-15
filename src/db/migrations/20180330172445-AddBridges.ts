@@ -17,7 +17,7 @@ export default {
                 {
                     type: "irc",
                     name: "IRC Bridge",
-                    avatarUrl: "/img/avatars/irc.png",
+                    avatarUrl: "/_dimension/img/avatars/irc.png",
                     isEnabled: true,
                     isPublic: true,
                     description: "Bridges IRC channels to rooms, supporting multiple networks",

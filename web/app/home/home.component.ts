@@ -11,9 +11,9 @@ export class HomeComponent {
     public showPromoPage = this.hostname === "https://dimension.t2bot.io";
 
     public integrationsConfig = `` +
-        `"integrations_ui_url": "${this.hostname}/riot",\n` +
-        `"integrations_rest_url": "${this.hostname}/api/v1/scalar",\n` +
-        `"integrations_widgets_urls": ["${this.hostname}/widgets"],\n`;
+        `"integrations_ui_url": "${this.hostname}/_dimension/riot",\n` +
+        `"integrations_rest_url": "${this.hostname}/_dimension/api/v1/scalar",\n` +
+        `"integrations_widgets_urls": ["${this.hostname}/_dimension/widgets"],\n`;
 
     public downloadInstructions = "" +
         "# Download Dimension\n" +

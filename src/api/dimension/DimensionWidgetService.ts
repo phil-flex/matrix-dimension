@@ -14,7 +14,7 @@ interface EmbedCapabilityResponse {
 /**
  * API for widgets
  */
-@Path("/api/v1/dimension/widgets")
+@Path("/_dimension/api/v1/dimension/widgets")
 export class DimensionWidgetService {
 
     @GET

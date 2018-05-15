@@ -10,10 +10,10 @@ export class StickerApiService extends AuthedApi {
     }
 
     public getPacks(): Promise<FE_UserStickerPack[]> {
-        return this.authedGet("/api/v1/dimension/stickers/packs").map(r => r.json()).toPromise();
+        return this.authedGet("/_dimension/api/v1/dimension/stickers/packs").map(r => r.json()).toPromise();
     }
 
     public togglePackSelection(packId: number, isSelected: boolean): Promise<any> {
-        return this.authedPost("/api/v1/dimension/stickers/packs/" + packId + "/selected", {isSelected: isSelected}).map(r => r.json()).toPromise();
+        return this.authedPost("/_dimension/api/v1/dimension/stickers/packs/" + packId + "/selected", {isSelected: isSelected}).map(r => r.json()).toPromise();
     }
 }

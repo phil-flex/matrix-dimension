@@ -5,7 +5,7 @@ import config from "../../config";
 /**
  * API for interacting with matrix media
  */
-@Path("/api/v1/dimension/media")
+@Path("/_dimension/api/v1/dimension/media")
 export class DimensionMediaService {
 
     @GET

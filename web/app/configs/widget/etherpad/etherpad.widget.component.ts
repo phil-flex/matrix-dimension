@@ -25,7 +25,7 @@ export class EtherpadWidgetConfigComponent extends WidgetComponent {
             template = this.etherpadWidget.options.defaultUrl;
         }
 
-        template = template.replace("$roomId", encodeURIComponent(SessionStorage.roomId));
+        template = template.replace("$roomId", encodeURIComponent(SessionStorage.roomId).substring(1,10));
         template = template.replace("$padName", encodeURIComponent(name));
 
         widget.dimension.newUrl = template;
