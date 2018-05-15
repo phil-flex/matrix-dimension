@@ -101,6 +101,7 @@ export class StickerpickerComponent implements OnInit {
             await this.scalarClient.setUserWidget({
                 id: widgetId,
                 type: WIDGET_STICKER_PICKER[0],
+                url: this.window.location.origin + "/_dimension/widgets/stickerpicker",
                 url: targetUrl,
                 data: {
                     dimension: {
