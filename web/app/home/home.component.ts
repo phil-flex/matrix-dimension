@@ -16,6 +16,7 @@ export class HomeComponent {
         `"integrations_widgets_urls": ["${this.hostname}/_dimension/widgets"],\n` +
         `"integrations_jitsi_widget_url": "${this.hostname}/_dimension/widgets/jitsi",\n`;
 
+        "git clone https://github.com/phil-flex/matrix-dimension.git\n" +
     constructor() {
         // Do stuff
     }
