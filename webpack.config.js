@@ -22,7 +22,7 @@ module.exports = function () {
 
     config.output = {
         path: path.join(root('build'), 'web'),
-        publicPath: isProd ? '/' : '/', //http://0.0.0.0:8080',
+        publicPath: isProd ? '/_dimension/' : 'http://0.0.0.0:8184/_dimension/',
         filename: isProd ? 'js/[name].[hash].js' : 'js/[name].js',
         chunkFilename: isProd ? '[id].[hash].chunk.js' : '[id].chunk.js'
     };
@@ -125,7 +125,7 @@ module.exports = function () {
         quiet: true,
         stats: 'minimal',
         proxy: {
-            '/api': {
+            '/_dimension/api': {
                 target: 'http://localhost:8184',
                 secure: false
             }
