@@ -11,13 +11,15 @@ export async function getFederationUrl(serverName: string): Promise<string> {
         return cachedUrl;
     }
 
-    if (serverName === config.homeserver.name && config.homeserver.federationUrl) {
+    //if (serverName === config.homeserver.name && config.homeserver.federationUrl) {
+    //FIXME: Under any condition if federationUrl configured, it should be used.
+    if (config.homeserver.federationUrl) {
         let url = config.homeserver.federationUrl;
         if (url.endsWith("/")) {
             url = url.substring(0, url.length - 1);
         }
 
-        LogService.info("matrix", "Using configured federation URL for " + serverName);
+        LogService.info("matrix", "Using configured federation "+ url+" for " + serverName);
         Cache.for(CACHE_FEDERATION).put(serverName, url);
         return url;
     }
@@ -29,6 +31,7 @@ export async function getFederationUrl(serverName: string): Promise<string> {
         const records = await dns.resolveSrv("_matrix._tcp." + serverName);
         if (records && records.length > 0) {
             serverUrl = "https://" + records[0].name + ":" + records[0].port;
+            //serverUrl = "https://localhost:" + records[0].port;
             expirationMs = records[0].ttl * 1000;
         }
     } catch (err) {
@@ -44,6 +47,7 @@ export async function getFederationUrl(serverName: string): Promise<string> {
         expirationMs = 4 * 60 * 60 * 1000;
     }
 
+    //if (!serverUrl) serverUrl = "https://localhost:8448";
     if (!serverUrl) serverUrl = "https://" + serverName + ":8448";
     LogService.verbose("matrix", "Federation URL for " + serverName + " is " + serverUrl + " - caching for " + expirationMs + " ms");
     Cache.for(CACHE_FEDERATION).put(serverName, serverUrl, expirationMs);
