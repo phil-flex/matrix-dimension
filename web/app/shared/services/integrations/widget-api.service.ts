@@ -20,6 +20,6 @@ export class WidgetApiService extends AuthedApi {
     }
 
     public getTerms(shortcode: string, language: string, version: string): Promise<FE_MinimalTerms> {
-        return this.http.get<FE_MinimalTerms>(`/api/v1/dimension/widgets/terms/${shortcode}/${language}/${version}`).toPromise();
+        return this.http.get<FE_MinimalTerms>(`/_dimension/api/v1/dimension/widgets/terms/${shortcode}/${language}/${version}`).toPromise();
     }
 }
