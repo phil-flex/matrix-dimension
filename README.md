@@ -11,9 +11,9 @@ An open source integrations manager for matrix clients, like Riot.
 Change the values in Riot's `config.json` as shown below. If you do not have a `config.json`, copy the `config.sample.json` from Riot.
 
 ```
-"integrations_ui_url": "https://dimension.t2bot.io/riot",
-"integrations_rest_url": "https://dimension.t2bot.io/api/v1/scalar",
-"integrations_widgets_urls": ["https://dimension.t2bot.io/widgets"],
+"integrations_ui_url": "https://dimension.t2bot.io/_dimension/riot",
+"integrations_rest_url": "https://dimension.t2bot.io/_dimension/api/v1/scalar",
+"integrations_widgets_urls": ["https://dimension.t2bot.io/_dimension/widgets"],
 ``` 
 
 The remaining settings should be tailored for your Riot deployment. If you're self-hosting Dimension, replace "dimension.t2bot.io" with your Dimension URL.
@@ -27,7 +27,7 @@ Prerequisites:
 
 ```bash
 # Download dimension 
-git clone https://github.com/turt2live/matrix-dimension.git
+git clone https://github.com/phil-flex/matrix-dimension.git
 cd matrix-dimension
 
 # Edit the configuration to your specifications.
@@ -56,9 +56,9 @@ That button should open Dimension. If you've configured everything correctly, yo
 3. Restart Dimension (`CTRL+C` and run `NODE_ENV=production npm run start:app` again)
 4. Set up the following reverse proxy information as applicable
     ```
-    location / {
+    location /_dimension/ {
         proxy_set_header X-Forwarded-For $remote_addr;
-        proxy_pass http://localhost:8184;
+        proxy_pass http://localhost:8184/_dimension/;
     }
     ```
    Be sure to also configure any SSL offloading.
