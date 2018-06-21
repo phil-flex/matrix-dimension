@@ -44,8 +44,8 @@ export class StickerPickerWidgetWrapperComponent extends CapableWidget implement
         }
 
         if (!this.authError) {
-        SessionStorage.scalarToken = token;
-        this.authError = !token;
+            SessionStorage.scalarToken = token;
+            this.authError = !token;
             this.isLoading = !this.authError;
         }
     }
