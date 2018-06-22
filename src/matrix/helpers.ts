@@ -28,8 +28,7 @@ export async function getFederationUrl(serverName: string): Promise<string> {
     let expirationMs = 4 * 60 * 60 * 1000; // default is 4 hours
 
     try {
-        //const records = await dns.resolveSrv("_matrix._tcp." + serverName);
-        const records = await dns.resolveSrv(serverName);
+        const records = await dns.resolveSrv("_matrix._tcp." + serverName);
         if (records && records.length > 0) {
             serverUrl = "https://" + records[0].name + ":" + records[0].port;
             //serverUrl = "https://localhost:" + records[0].port;
@@ -41,7 +40,7 @@ export async function getFederationUrl(serverName: string): Promise<string> {
         // People tend to think that the lack of an SRV record is bad, but in reality it's only a problem if one was set and
         // it's not being found. Most people don't set up the SRV record, but some do.
         LogService.verbose("matrix", err);
-        LogService.warn("matrix", "Could not find " + serverName + " DNS record. This is normal for most servers.");
+        LogService.warn("matrix", "Could not find _matrix._tcp." + serverName + " DNS record. This is normal for most servers.");
     }
 
     if (!(expirationMs > 0)) { // This is weird so we can catch NaN easier
