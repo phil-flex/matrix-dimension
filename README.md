@@ -14,7 +14,7 @@ Change the values in Riot's `config.json` as shown below. If you do not have a `
 "integrations_ui_url": "https://dimension.t2bot.io/_dimension/riot",
 "integrations_rest_url": "https://dimension.t2bot.io/_dimension/api/v1/scalar",
 "integrations_widgets_urls": ["https://dimension.t2bot.io/_dimension/widgets"],
-``` 
+```
 
 The remaining settings should be tailored for your Riot deployment. If you're self-hosting Dimension, replace "dimension.t2bot.io" with your Dimension URL.
 
@@ -26,7 +26,7 @@ Prerequisites:
 * A webserver running Riot or another supported client
 
 ```bash
-# Download dimension 
+# Download dimension
 git clone https://github.com/phil-flex/matrix-dimension.git
 cd matrix-dimension
 
@@ -39,7 +39,7 @@ nano config/production.yaml
 NODE_ENV=production npm run start:app
 ```
 
-If you didn't change the port, Dimension should now be running on port 8184. It's best to set up your environment so that Dimension runs on a dedicated subdomain that *is not* the same as your Riot domain. This is to help keep Riot and Dimension safe and secure. 
+If you didn't change the port, Dimension should now be running on port 8184. It's best to set up your environment so that Dimension runs on a dedicated subdomain that *is not* the same as your Riot domain. This is to help keep Riot and Dimension safe and secure.
 
 In your Riot `config.json`, set the integration manager to be your Dimension URL. Replace `dimension.t2bot.io` in the example above (under "Configuring Riot to use Dimension") with your Dimension URLs.
 
@@ -87,6 +87,14 @@ Integration managers sit between your users and your integrations (bots, bridges
 
 The infrastructure diagram looks something like this:
 ![infrastructure](https://t2bot.io/_matrix/media/r0/download/t2l.io/3bb5674d85ee22c070e36be0d9582b4d)
+
+# How to setup Linux service
+
+Ensure the `#!/usr/bin/env node` at the first line of the `build/app/index.js` and `chmod +x build/app/index.js`
+
+Create symbolic link to system service, `ln -s matrix-dimension.service /etc/systemd/system/matrix-dimension.service`
+
+Assuming matrix-dimension located at `/opt/matrix-dimension/`
 
 # License
 
