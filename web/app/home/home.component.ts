@@ -14,6 +14,7 @@ export class HomeComponent {
         `"integrations_ui_url": "${this.hostname}/_dimension/riot",\n` +
         `"integrations_rest_url": "${this.hostname}/_dimension/api/v1/scalar",\n` +
         `"integrations_widgets_urls": ["${this.hostname}/_dimension/widgets"],\n`;
+        `"integrations_jitsi_widget_url": "${this.hostname}/_dimension/widgets/jitsi",\n`;
 
     public downloadInstructions = "" +
         "# Download Dimension\n" +
