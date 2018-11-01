@@ -71,6 +71,15 @@ export class ScalarWidgetApi {
         });
     }
 
+    public static openIntegrationManager(integrationType: string, integrationId: string): void {
+        ScalarWidgetApi.callAction("integration_manager_open", {
+            data: {
+                integType: integrationType,
+                integId: integrationId,
+            },
+        });
+    }
+
     private static callAction(action, payload) {
         if (!window.opener) {
             return;
@@ -101,6 +110,7 @@ window.addEventListener("message", event => {
 
     if (event.data.api === "toWidget" && event.data.action) {
         if (event.data.widgetId && !ScalarWidgetApi.widgetId) ScalarWidgetApi.widgetId = event.data.widgetId;
+        console.log(`[Dimension] Received toWidget request at widget ID ${ScalarWidgetApi.widgetId}: ${JSON.stringify(event.data)}`);
         ScalarWidgetApi.requestReceived.next(event.data);
         return;
     }

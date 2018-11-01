@@ -1,6 +1,13 @@
 import { Injectable } from "@angular/core";
 import {
-    WIDGET_CUSTOM, WIDGET_ETHERPAD, WIDGET_GOOGLE_CALENDAR, WIDGET_GOOGLE_DOCS, WIDGET_JITSI, WIDGET_TWITCH,
+    WIDGET_CUSTOM,
+    WIDGET_ETHERPAD,
+    WIDGET_GOOGLE_CALENDAR,
+    WIDGET_GOOGLE_DOCS,
+    WIDGET_GRAFANA,
+    WIDGET_JITSI, WIDGET_SPOTIFY, WIDGET_STICKER_PICKER,
+    WIDGET_TRADINGVIEW,
+    WIDGET_TWITCH,
     WIDGET_YOUTUBE
 } from "../models/widget";
 import { FE_Integration } from "../models/integration";
@@ -17,6 +24,10 @@ export class IntegrationsRegistry {
         },
         "bridge": {
             "irc": {},
+            "telegram": {},
+            "webhooks": {},
+            "gitter": {},
+            "slack": {},
         },
         "widget": {
             "custom": {
@@ -39,6 +50,18 @@ export class IntegrationsRegistry {
             },
             "googlecalendar": {
                 types: WIDGET_GOOGLE_CALENDAR,
+            },
+            "grafana": {
+                types: WIDGET_GRAFANA,
+            },
+            "tradingview": {
+                types: WIDGET_TRADINGVIEW,
+            },
+            "spotify": {
+                types: WIDGET_SPOTIFY,
+            },
+            "stickerpicker": {
+                types: WIDGET_STICKER_PICKER,
             },
         },
     };

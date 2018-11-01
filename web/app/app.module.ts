@@ -78,6 +78,37 @@ import { MediaService } from "./shared/services/media.service";
 import { StickerApiService } from "./shared/services/integrations/sticker-api.service";
 import { StickerpickerComponent } from "./configs/stickerpicker/stickerpicker.component";
 import { StickerPickerWidgetWrapperComponent } from "./widget-wrappers/sticker-picker/sticker-picker.component";
+import { AdminTelegramApiService } from "./shared/services/admin/admin-telegram-api.service";
+import { AdminTelegramBridgeComponent } from "./admin/bridges/telegram/telegram.component";
+import { AdminTelegramBridgeManageSelfhostedComponent } from "./admin/bridges/telegram/manage-selfhosted/manage-selfhosted.component";
+import { TelegramApiService } from "./shared/services/integrations/telegram-api.service";
+import { TelegramBridgeConfigComponent } from "./configs/bridge/telegram/telegram.bridge.component";
+import { TelegramAskUnbridgeComponent } from "./configs/bridge/telegram/ask-unbridge/ask-unbridge.component";
+import { TelegramCannotUnbridgeComponent } from "./configs/bridge/telegram/cannot-unbridge/cannot-unbridge.component";
+import { AdminWebhooksBridgeManageSelfhostedComponent } from "./admin/bridges/webhooks/manage-selfhosted/manage-selfhosted.component";
+import { AdminWebhooksBridgeComponent } from "./admin/bridges/webhooks/webhooks.component";
+import { AdminWebhooksApiService } from "./shared/services/admin/admin-webhooks-api.service";
+import { WebhooksApiService } from "./shared/services/integrations/webhooks-api.service";
+import { WebhooksBridgeConfigComponent } from "./configs/bridge/webhooks/webhooks.bridge.component";
+import { AdminGitterBridgeComponent } from "./admin/bridges/gitter/gitter.component";
+import { AdminGitterBridgeManageSelfhostedComponent } from "./admin/bridges/gitter/manage-selfhosted/manage-selfhosted.component";
+import { AdminGitterApiService } from "./shared/services/admin/admin-gitter-api.service";
+import { GitterBridgeConfigComponent } from "./configs/bridge/gitter/gitter.bridge.component";
+import { GitterApiService } from "./shared/services/integrations/gitter-api.service";
+import { GenericFullscreenWidgetWrapperComponent } from "./widget-wrappers/generic-fullscreen/generic-fullscreen.component";
+import { GrafanaWidgetConfigComponent } from "./configs/widget/grafana/grafana.widget.component";
+import { TradingViewWidgetConfigComponent } from "./configs/widget/tradingview/tradingview.widget.component";
+import { TradingViewWidgetWrapperComponent } from "./widget-wrappers/tradingview/tradingview.component";
+import { SpotifyWidgetConfigComponent } from "./configs/widget/spotify/spotify.widget.component";
+import { SpotifyWidgetWrapperComponent } from "./widget-wrappers/spotify/spotify.component";
+import { AdminCustomSimpleBotsApiService } from "./shared/services/admin/admin-custom-simple-bots-api.service";
+import { AdminCustomBotsComponent } from "./admin/custom-bots/custom-bots.component";
+import { AdminAddCustomBotComponent } from "./admin/custom-bots/add/add.component";
+import { SlackApiService } from "./shared/services/integrations/slack-api.service";
+import { SlackBridgeConfigComponent } from "./configs/bridge/slack/slack.bridge.component";
+import { AdminSlackBridgeManageSelfhostedComponent } from "./admin/bridges/slack/manage-selfhosted/manage-selfhosted.component";
+import { AdminSlackBridgeComponent } from "./admin/bridges/slack/slack.component";
+import { AdminSlackApiService } from "./shared/services/admin/admin-slack-api.service";
 
 @NgModule({
     imports: [
@@ -145,6 +176,28 @@ import { StickerPickerWidgetWrapperComponent } from "./widget-wrappers/sticker-p
         AdminStickerPackPreviewComponent,
         StickerpickerComponent,
         StickerPickerWidgetWrapperComponent,
+        AdminTelegramBridgeComponent,
+        AdminTelegramBridgeManageSelfhostedComponent,
+        TelegramBridgeConfigComponent,
+        TelegramAskUnbridgeComponent,
+        TelegramCannotUnbridgeComponent,
+        AdminWebhooksBridgeManageSelfhostedComponent,
+        AdminWebhooksBridgeComponent,
+        WebhooksBridgeConfigComponent,
+        AdminGitterBridgeComponent,
+        AdminGitterBridgeManageSelfhostedComponent,
+        GitterBridgeConfigComponent,
+        GenericFullscreenWidgetWrapperComponent,
+        GrafanaWidgetConfigComponent,
+        TradingViewWidgetConfigComponent,
+        TradingViewWidgetWrapperComponent,
+        SpotifyWidgetConfigComponent,
+        SpotifyWidgetWrapperComponent,
+        AdminCustomBotsComponent,
+        AdminAddCustomBotComponent,
+        SlackBridgeConfigComponent,
+        AdminSlackBridgeManageSelfhostedComponent,
+        AdminSlackBridgeComponent,
 
         // Vendor
     ],
@@ -164,6 +217,15 @@ import { StickerPickerWidgetWrapperComponent } from "./widget-wrappers/sticker-p
         AdminStickersApiService,
         MediaService,
         StickerApiService,
+        AdminTelegramApiService,
+        TelegramApiService,
+        AdminWebhooksApiService,
+        WebhooksApiService,
+        AdminGitterApiService,
+        GitterApiService,
+        AdminCustomSimpleBotsApiService,
+        SlackApiService,
+        AdminSlackApiService,
         {provide: Window, useValue: window},
 
         // Vendor
@@ -181,6 +243,13 @@ import { StickerPickerWidgetWrapperComponent } from "./widget-wrappers/sticker-p
         AdminIrcBridgeNetworksComponent,
         AdminIrcBridgeAddSelfhostedComponent,
         AdminStickerPackPreviewComponent,
+        AdminTelegramBridgeManageSelfhostedComponent,
+        TelegramAskUnbridgeComponent,
+        TelegramCannotUnbridgeComponent,
+        AdminWebhooksBridgeManageSelfhostedComponent,
+        AdminGitterBridgeManageSelfhostedComponent,
+        AdminAddCustomBotComponent,
+        AdminSlackBridgeManageSelfhostedComponent,
     ]
 })
 export class AppModule {

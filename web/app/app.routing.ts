@@ -27,6 +27,21 @@ import { IrcBridgeConfigComponent } from "./configs/bridge/irc/irc.bridge.compon
 import { AdminStickerPacksComponent } from "./admin/sticker-packs/sticker-packs.component";
 import { StickerpickerComponent } from "./configs/stickerpicker/stickerpicker.component";
 import { StickerPickerWidgetWrapperComponent } from "./widget-wrappers/sticker-picker/sticker-picker.component";
+import { AdminTelegramBridgeComponent } from "./admin/bridges/telegram/telegram.component";
+import { TelegramBridgeConfigComponent } from "./configs/bridge/telegram/telegram.bridge.component";
+import { AdminWebhooksBridgeComponent } from "./admin/bridges/webhooks/webhooks.component";
+import { WebhooksBridgeConfigComponent } from "./configs/bridge/webhooks/webhooks.bridge.component";
+import { AdminGitterBridgeComponent } from "./admin/bridges/gitter/gitter.component";
+import { GitterBridgeConfigComponent } from "./configs/bridge/gitter/gitter.bridge.component";
+import { GenericFullscreenWidgetWrapperComponent } from "./widget-wrappers/generic-fullscreen/generic-fullscreen.component";
+import { GrafanaWidgetConfigComponent } from "./configs/widget/grafana/grafana.widget.component";
+import { TradingViewWidgetConfigComponent } from "./configs/widget/tradingview/tradingview.widget.component";
+import { TradingViewWidgetWrapperComponent } from "./widget-wrappers/tradingview/tradingview.component";
+import { SpotifyWidgetConfigComponent } from "./configs/widget/spotify/spotify.widget.component";
+import { SpotifyWidgetWrapperComponent } from "./widget-wrappers/spotify/spotify.component";
+import { AdminCustomBotsComponent } from "./admin/custom-bots/custom-bots.component";
+import { AdminSlackBridgeComponent } from "./admin/bridges/slack/slack.component";
+import { SlackBridgeConfigComponent } from "./configs/bridge/slack/slack.bridge.component";
 
 const routes: Routes = [
     {path: "", component: HomeComponent},
@@ -75,6 +90,16 @@ const routes: Routes = [
                         ]
                     },
                     {
+                        path: "custom-bots",
+                        data: {breadcrumb: "Custom bots", name: "Custom bots"},
+                        children: [
+                            {
+                                path: "",
+                                component: AdminCustomBotsComponent,
+                            }
+                        ]
+                    },
+                    {
                         path: "bridges",
                         data: {breadcrumb: "Bridges", name: "Bridges"},
                         children: [
@@ -86,6 +111,26 @@ const routes: Routes = [
                                 path: "irc",
                                 component: AdminIrcBridgeComponent,
                                 data: {breadcrumb: "IRC Bridge", name: "IRC Bridge"},
+                            },
+                            {
+                                path: "telegram",
+                                component: AdminTelegramBridgeComponent,
+                                data: {breadcrumb: "Telegram Bridge", name: "Telegram Bridge"},
+                            },
+                            {
+                                path: "webhooks",
+                                component: AdminWebhooksBridgeComponent,
+                                data: {breadcrumb: "Webhook Bridge", name: "Webhook Bridge"},
+                            },
+                            {
+                                path: "gitter",
+                                component: AdminGitterBridgeComponent,
+                                data: {breadcrumb: "Gitter Bridge", name: "Gitter Bridge"},
+                            },
+                            {
+                                path: "slack",
+                                component: AdminSlackBridgeComponent,
+                                data: {breadcrumb: "Slack Bridge", name: "Slack Bridge"},
                             },
                         ],
                     },
@@ -139,6 +184,21 @@ const routes: Routes = [
                         component: YoutubeWidgetConfigComponent,
                         data: {breadcrumb: "Youtube Video Widgets", name: "Youtube Video Widgets"},
                     },
+                    {
+                        path: "grafana",
+                        component: GrafanaWidgetConfigComponent,
+                        data: {breadcrumb: "Grafana Widgets", name: "Grafana Widgets"},
+                    },
+                    {
+                        path: "tradingview",
+                        component: TradingViewWidgetConfigComponent,
+                        data: {breadcrumb: "TradingView Widgets", name: "TradingView Widgets"},
+                    },
+                    {
+                        path: "spotify",
+                        component: SpotifyWidgetConfigComponent,
+                        data: {breadcrumb: "Spotify Widgets", name: "Spotify Widgets"},
+                    },
                 ],
             },
             {
@@ -164,6 +224,26 @@ const routes: Routes = [
                         component: IrcBridgeConfigComponent,
                         data: {breadcrumb: "IRC Bridge Configuration", name: "IRC Bridge Configuration"},
                     },
+                    {
+                        path: "telegram",
+                        component: TelegramBridgeConfigComponent,
+                        data: {breadcrumb: "Telegram Bridge Configuration", name: "Telegram Bridge Configuration"},
+                    },
+                    {
+                        path: "webhooks",
+                        component: WebhooksBridgeConfigComponent,
+                        data: {breadcrumb: "Webhook Bridge Configuration", name: "Webhook Bridge Configuration"},
+                    },
+                    {
+                        path: "gitter",
+                        component: GitterBridgeConfigComponent,
+                        data: {breadcrumb: "Gitter Bridge Configuration", name: "Gitter Bridge Configuration"},
+                    },
+                    {
+                        path: "slack",
+                        component: SlackBridgeConfigComponent,
+                        data: {breadcrumb: "Slack Bridge Configuration", name: "Slack Bridge Configuration"},
+                    },
                 ],
             },
             {
@@ -181,6 +261,9 @@ const routes: Routes = [
             {path: "jitsi", component: JitsiWidgetWrapperComponent},
             {path: "gcal", component: GCalWidgetWrapperComponent},
             {path: "stickerpicker", component: StickerPickerWidgetWrapperComponent},
+            {path: "generic-fullscreen", component: GenericFullscreenWidgetWrapperComponent},
+            {path: "tradingview", component: TradingViewWidgetWrapperComponent},
+            {path: "spotify", component: SpotifyWidgetWrapperComponent},
         ]
     },
 ];

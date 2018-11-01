@@ -1,36 +1,188 @@
 // component styles are encapsulated and only applied to their components
-.header {
-  text-align: center;
-  background-color: #ea6424;
-  margin-top: 30px;
-  border-top: 1px solid #ea4000;
-  border-bottom: 1px solid #ea4000;
-}
+@import "../../style/themes/themes";
 
-.header img {
-  padding: 20px;
-}
+@include themifyComponent() {
+  .spacer {
+    width: 85%;
+    display: block;
+    border-color: themed(promoSpacerColor);
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
 
-.wrapper {
-  min-width: 700px;
-  max-width: 1000px;
-  margin: auto;
-  padding: 20px;
-  background-color: white;
-  border-left: 1px solid #ea6424aa;
-  border-right: 1px solid #ea6424aa;
-  border-bottom: 1px solid #ea6424aa;
-}
+  .shadowed {
+    box-shadow: 0 20px 40px 20px thtmed(promoShadowColor);
+  }
 
-pre {
-  border: 1px solid #ea6424;
-  border-radius: 3px;
-  padding: 5px;
-  width: 600px;
-  background-color: #fff;
-}
+  .info-box {
+    display: inline-block;
+    margin: auto;
+    background-color: themed(promoInfoBgColor);
+    padding: 50px;
+    border: 1px solid themed(promoInfoBorderColor);
 
-h4 {
-  padding-top: 15px;
-  font-size: 1.45em;
+    h3 {
+      margin-bottom: 20px;
+    }
+  }
+
+  pre {
+    border: 1px solid themed(promoPreBorderColor);
+    padding: 5px;
+    width: 590px;
+  }
+
+  .footer {
+    color: themed(promoFooterFgColor);
+    text-align: center;
+    padding: 50px;
+    background: linear-gradient(to right, themed(promoGradientStartColor), themed(promoGradientEndColor));
+
+    a {
+      color: themed(promoFooterFgColor);
+      font-size: 0.9em;
+      margin-left: 20px;
+    }
+  }
+
+  .links {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+  .links a {
+    font-size: 0.9em;
+    color: themed(promoLinksColor);
+    margin-left: 20px;
+  }
+
+  .hero {
+    color: themed(promoHeroFgColor);
+    text-align: center;
+    background: linear-gradient(to right, themed(promoGradientStartColor), themed(promoGradientEndColor));
+  }
+
+  .wrapper {
+    min-width: 700px;
+    max-width: 1500px;
+    padding: 20px;
+    margin: 70px auto auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .made-for-matrix {
+    height: 45px;
+  }
+
+  .made-for-matrix-anchor {
+    margin-left: 20px;
+  }
+
+  .promo {
+    .hero {
+      padding-top: 50px;
+      padding-bottom: 100px;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 3vw));
+    }
+
+    .logo {
+      padding: 20px 20px 40px;
+    }
+
+    .banner {
+      font-size: 1.2em;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+
+    .try-dimension {
+      width: 695px;
+    }
+
+    .screenshot {
+      display: inline-block;
+      width: 597px;
+      margin: 20px 70px 0;
+      border: 1px solid themed(promoInfoBorderColor);
+
+      img {
+        width: 595px;
+      }
+    }
+
+    .subhero-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .integrations {
+      display: block;
+      width: 100%;
+
+      .title {
+        display: block;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .intro {
+        font-size: 1.3em;
+        color: themed(promoIntroColor);
+        text-align: center;
+      }
+
+      .integration-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .integration {
+          width: 350px;
+          background-color: themed(promoIntegrationBgColor);
+          padding: 20px;
+          margin: 15px;
+          border: 1px solid themed(promoIntegrationBorderColor);
+
+          img {
+            margin-right: 25px;
+            width: 48px;
+            vertical-align: middle;
+          }
+
+          span {
+            font-size: 1.2em;
+          }
+        }
+      }
+    }
+  }
+
+  .non-promo {
+    .hero {
+      padding-top: 20px;
+    }
+
+    .logo {
+      padding: 20px 20px 40px;
+      height: 150px;
+    }
+
+    .welcome {
+      min-width: 700px;
+      max-width: 800px;
+    }
+
+    h4 {
+      margin-top: 45px;
+      margin-bottom: 20px;
+    }
+
+    .footer {
+      margin-top: 100px;
+    }
+  }
 }
