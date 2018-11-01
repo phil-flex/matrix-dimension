@@ -4,7 +4,7 @@ Scalar has a server-side component to assist in managing integrations. The known
 
 None of these are officially documented, and are subject to change.
 
-## POST `/api/integrations?scalar_token=...`
+## POST `/_dimension/api/integrations?scalar_token=...`
 
 **Body**:
 ```
@@ -65,7 +65,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/integrations/{type}?scalar_token=...`
+## POST `/_dimension/api/integrations/{type}?scalar_token=...`
 
 **Params**:
 `type` appears to be one of the following:
@@ -141,7 +141,7 @@ None of these are officially documented, and are subject to change.
 ```
 
 
-## POST `/api/removeIntegration?scalar_token=...`
+## POST `/_dimension/api/removeIntegration?scalar_token=...`
 
 **Body**:
 ```
@@ -151,7 +151,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/integrations/rssbot/configureService?scalar_token=...`
+## POST `/_dimension/api/integrations/rssbot/configureService?scalar_token=...`
 
 **Body**:
 ```
@@ -163,7 +163,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/integrations/travis-ci/configureService?scalar_token=...`
+## POST `/_dimension/api/integrations/travis-ci/configureService?scalar_token=...`
 
 **Body**:
 ```
@@ -180,7 +180,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## GET `/api/bridges/irc/_matrix/provision/querynetworks?scalar_token=...`
+## GET `/_dimension/api/bridges/irc/_matrix/provision/querynetworks?scalar_token=...`
 
 **Response**
 ```
@@ -222,7 +222,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/bridges/irc/_matrix/provision/querylink?rid=...&scalar_token=...`
+## POST `/_dimension/api/bridges/irc/_matrix/provision/querylink?rid=...&scalar_token=...`
 
 **Body**
 ```
@@ -244,7 +244,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/bridges/irc/_matrix/provision/link?rid=...&scalar_token=...`
+## POST `/_dimension/api/bridges/irc/_matrix/provision/link?rid=...&scalar_token=...`
 
 **Body**
 ```
@@ -269,7 +269,7 @@ None of these are officially documented, and are subject to change.
 
 *Note*: This returns 200 OK after sending the request to link. If the link succeeds, `listlinks` will show as such.
 
-## GET `/api/bridges/irc/_matrix/provision/listlinks/{roomId}?scalar_token=...`
+## GET `/_dimension/api/bridges/irc/_matrix/provision/listlinks/{roomId}?scalar_token=...`
 
 **Params**
 * `{roomId}` - the matrix room id (ie: `!JmvocvDuPTYUfuvKgs:t2l.io`)
@@ -298,7 +298,7 @@ None of these are officially documented, and are subject to change.
 
 *Note*: This is called on a timer in Scalar to show when a user has approved a link. Called every few seconds.
 
-## POST `/api/bridges/irc/_matrix/provision/unlink?rid=...&scalar_token=...`
+## POST `/_dimension/api/bridges/irc/_matrix/provision/unlink?rid=...&scalar_token=...`
 
 **Body**
 ```
@@ -322,7 +322,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/bridges/slack/_matrix/provision/getlink/?scalar_token=...`
+## POST `/_dimension/api/bridges/slack/_matrix/provision/getlink/?scalar_token=...`
 
 **Body**
 ```
@@ -368,7 +368,7 @@ None of these are officially documented, and are subject to change.
 
 *Note*: The `auth_uri` disappears after the user has authorized the bridge. This endpoint is also polled. This will also 404 if there is no link.
 
-## POST `/api/bridges/slack/_matrix/provision/getbotid?scalar_token=...`
+## POST `/_dimension/api/bridges/slack/_matrix/provision/getbotid?scalar_token=...`
 
 **Body**
 ```
@@ -389,7 +389,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/bridges/slack/_matrix/provision/logout?scalar_token=...`
+## POST `/_dimension/api/bridges/slack/_matrix/provision/logout?scalar_token=...`
 
 **Body**
 ```
@@ -412,7 +412,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/bridges/slack/_matrix/provision/link?scalar_token=...`
+## POST `/_dimension/api/bridges/slack/_matrix/provision/link?scalar_token=...`
 
 **Body (webhooks)**
 ```
@@ -466,7 +466,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/bridges/slack/_matrix/provision/teams?scalar_token=...`
+## POST `/_dimension/api/bridges/slack/_matrix/provision/teams?scalar_token=...`
 
 **Body**
 ```
@@ -495,7 +495,7 @@ None of these are officially documented, and are subject to change.
 
 *Note*: This 404s if there's no teams set up.
 
-## POST `/api/bridges/slack/_matrix/provision/channels?scalar_token=...`
+## POST `/_dimension/api/bridges/slack/_matrix/provision/channels?scalar_token=...`
 
 **Body**
 ```
@@ -533,7 +533,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/bridges/slack/_matrix/provision/authurl?scalar_token=...`
+## POST `/_dimension/api/bridges/slack/_matrix/provision/authurl?scalar_token=...`
 
 **Body**
 ```
@@ -556,7 +556,7 @@ None of these are officially documented, and are subject to change.
 
 *Note*: This 404s if there's no teams set up.
 
-## POST `/api/bridges/gitter/_matrix/provision/unlink?scalar_token=...`
+## POST `/_dimension/api/bridges/gitter/_matrix/provision/unlink?scalar_token=...`
 
 **Body (webhooks)**
 ```
@@ -594,7 +594,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/bridges/gitter/_matrix/provision/getlink/?scalar_token=...`
+## POST `/_dimension/api/bridges/gitter/_matrix/provision/getlink/?scalar_token=...`
 
 **Body**
 ```
@@ -618,7 +618,7 @@ None of these are officially documented, and are subject to change.
 
 *Note*: This API is polled to check for updates, such as bridging success. This will also 404 if there is no link.
 
-## POST `/api/bridges/gitter/_matrix/provision/unlink?scalar_token=...`
+## POST `/_dimension/api/bridges/gitter/_matrix/provision/unlink?scalar_token=...`
 
 **Body**
 ```
@@ -640,7 +640,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/bridges/gitter/_matrix/provision/getbotid?scalar_token=...`
+## POST `/_dimension/api/bridges/gitter/_matrix/provision/getbotid?scalar_token=...`
 
 **Body**
 ```
@@ -661,7 +661,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/bridges/gitter/_matrix/provision/link?scalar_token=...`
+## POST `/_dimension/api/bridges/gitter/_matrix/provision/link?scalar_token=...`
 
 **Body**
 ```
@@ -683,7 +683,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/integrations/github-webhook?scalar_token=...`
+## POST `/_dimension/api/integrations/github-webhook?scalar_token=...`
 
 **Body**
 ```
@@ -749,7 +749,7 @@ None of these are officially documented, and are subject to change.
 
 *Note*: For organization avatars: `https://github.com/turt2live.png`
 
-## POST `/api/integrations/github/requestAuthSession?scalar_token=...`
+## POST `/_dimension/api/integrations/github/requestAuthSession?scalar_token=...`
 
 **Body**
 ```
@@ -765,7 +765,7 @@ None of these are officially documented, and are subject to change.
 }
 ```
 
-## POST `/api/integrations/github/removeAuthSession?scalar_token=...`
+## POST `/_dimension/api/integrations/github/removeAuthSession?scalar_token=...`
 
 **Body**
 ```
@@ -777,7 +777,7 @@ None of these are officially documented, and are subject to change.
 {}
 ```
 
-## POST `/api/integrations/github-webhook/configureService?scalar_token=...`
+## POST `/_dimension/api/integrations/github-webhook/configureService?scalar_token=...`
 
 **Body**
 ```
@@ -803,7 +803,7 @@ None of these are officially documented, and are subject to change.
 
 *Note*: Invite person-specific bot on first repository
 
-## GET `/api/widgets/title_lookup?curl=https://t2bot.io&scalar_token=...`
+## GET `/_dimension/api/widgets/title_lookup?curl=https://t2bot.io&scalar_token=...`
 
 **Response**
 ```

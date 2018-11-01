@@ -5,7 +5,7 @@ to get a `scalar_token` that it then uses to authenticate all future requests wi
 
 ## `$restUrl/register`
 
-This ends up mapping to `/api/v1/scalar/register` when Dimension is correctly set up for a Riot instance.
+This ends up mapping to `/_dimension/api/v1/scalar/register` when Dimension is correctly set up for a Riot instance.
 
 Riot will POST to this endpoint an OpenID object that looks similar to the following:
 ```

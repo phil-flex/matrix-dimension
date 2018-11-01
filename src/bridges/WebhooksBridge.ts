@@ -30,7 +30,7 @@ export class WebhooksBridge {
 
     public async getBridgeInfo(): Promise<WebhookBridgeInfo> {
         const bridge = await this.getDefaultBridge();
-        return this.doProvisionRequest<WebhookBridgeInfo>(bridge, "GET", "/api/v1/provision/info");
+        return this.doProvisionRequest<WebhookBridgeInfo>(bridge, "GET", "/_dimension/api/v1/provision/info");
     }
 
     public async getHooks(roomId: string): Promise<WebhookConfiguration[]> {
