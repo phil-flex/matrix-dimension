@@ -10,17 +10,17 @@ export class GitterApiService extends AuthedApi {
     }
 
     public bridgeRoom(roomId: string, gitterRoomName: string): Promise<FE_GitterLink> {
-        return this.authedPost("/api/v1/dimension/gitter/room/" + roomId + "/link", {gitterRoomName})
+        return this.authedPost("/_dimension/api/v1/dimension/gitter/room/" + roomId + "/link", {gitterRoomName})
             .map(r => r.json()).toPromise();
     }
 
     public unbridgeRoom(roomId: string): Promise<any> {
-        return this.authedDelete("/api/v1/dimension/gitter/room/" + roomId + "/link")
+        return this.authedDelete("/_dimension/api/v1/dimension/gitter/room/" + roomId + "/link")
             .map(r => r.json()).toPromise();
     }
 
     public getLink(roomId: string): Promise<FE_GitterLink> {
-        return this.authedGet("/api/v1/dimension/gitter/room/" + roomId + "/link")
+        return this.authedGet("/_dimension/api/v1/dimension/gitter/room/" + roomId + "/link")
             .map(r => r.json()).toPromise();
     }
 }

@@ -7,7 +7,7 @@ export default {
                 {
                     type: "tradingview",
                     name: "TradingView",
-                    avatarUrl: "/img/avatars/tradingview.png",
+                    avatarUrl: "/_dimension/img/avatars/tradingview.png",
                     isEnabled: true,
                     isPublic: true,
                     description: "Monitor your favourite cryptocurrencies",

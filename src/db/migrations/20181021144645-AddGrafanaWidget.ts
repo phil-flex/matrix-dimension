@@ -7,7 +7,7 @@ export default {
                 {
                     type: "grafana",
                     name: "Grafana",
-                    avatarUrl: "/img/avatars/grafana.png",
+                    avatarUrl: "/_dimension/img/avatars/grafana.png",
                     isEnabled: true,
                     isPublic: true,
                     description: "Embed a graph in the room",

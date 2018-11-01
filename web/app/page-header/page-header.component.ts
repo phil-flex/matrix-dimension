@@ -19,7 +19,7 @@ export class PageHeaderComponent {
                 let children = currentRoute.children;
                 children.forEach(route => {
                     currentRoute = route;
-                    url += "/" + route.snapshot.url.map(s => s.path).join("/");
+                    url += "/_dimension/" + route.snapshot.url.map(s => s.path).join("/");
                     if (route.outlet !== PRIMARY_OUTLET) return;
                     if (!route.routeConfig || !route.routeConfig.data) return;
                     if (url === ev.urlAfterRedirects.split("?")[0]) this.pageName = route.snapshot.data.name;

@@ -7,7 +7,7 @@ export default {
                 {
                     type: "webhooks",
                     name: "Webhook Bridge",
-                    avatarUrl: "/img/avatars/webhooks.png",
+                    avatarUrl: "/_dimension/img/avatars/webhooks.png",
                     isEnabled: true,
                     isPublic: true,
                     description: "Slack-compatible webhooks for your room",

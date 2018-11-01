@@ -28,7 +28,7 @@ interface BotProfile {
 /**
  * Administrative API for managing custom simple bots hosted by Dimension
  */
-@Path("/api/v1/dimension/admin/bots/simple/custom")
+@Path("/_dimension/api/v1/dimension/admin/bots/simple/custom")
 export class AdminCustomSimpleBotService {
 
     @GET

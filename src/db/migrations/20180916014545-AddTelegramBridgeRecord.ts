@@ -7,7 +7,7 @@ export default {
                 {
                     type: "telegram",
                     name: "Telegram Bridge",
-                    avatarUrl: "/img/avatars/telegram.png",
+                    avatarUrl: "/_dimension/img/avatars/telegram.png",
                     isEnabled: true,
                     isPublic: true,
                     description: "Bridges Telegram chats and channels to rooms on Matrix",

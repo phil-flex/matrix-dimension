@@ -29,7 +29,7 @@ interface BridgeResponse {
 /**
  * Administrative API for configuring Telegram bridge instances.
  */
-@Path("/api/v1/dimension/admin/telegram")
+@Path("/_dimension/api/v1/dimension/admin/telegram")
 export class AdminTelegramService {
 
     @GET

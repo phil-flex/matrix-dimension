@@ -24,7 +24,7 @@ interface BridgeResponse {
 /**
  * Administrative API for configuring Slack bridge instances.
  */
-@Path("/api/v1/dimension/admin/slack")
+@Path("/_dimension/api/v1/dimension/admin/slack")
 export class AdminSlackService {
 
     @GET

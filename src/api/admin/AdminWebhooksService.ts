@@ -25,7 +25,7 @@ interface BridgeResponse {
 /**
  * Administrative API for configuring Webhook bridge instances.
  */
-@Path("/api/v1/dimension/admin/webhooks")
+@Path("/_dimension/api/v1/dimension/admin/webhooks")
 export class AdminWebhooksService {
 
     @GET

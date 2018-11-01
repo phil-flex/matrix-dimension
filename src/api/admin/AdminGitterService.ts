@@ -24,7 +24,7 @@ interface BridgeResponse {
 /**
  * Administrative API for configuring Gitter bridge instances.
  */
-@Path("/api/v1/dimension/admin/gitter")
+@Path("/_dimension/api/v1/dimension/admin/gitter")
 export class AdminGitterService {
 
     @GET

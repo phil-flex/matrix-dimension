@@ -18,7 +18,7 @@ interface BridgeRoomRequest {
 /**
  * API for interacting with the Telegram bridge
  */
-@Path("/api/v1/dimension/telegram")
+@Path("/_dimension/api/v1/dimension/telegram")
 export class DimensionTelegramService {
 
     @GET

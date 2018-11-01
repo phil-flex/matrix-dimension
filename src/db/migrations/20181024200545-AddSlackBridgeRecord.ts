@@ -7,7 +7,7 @@ export default {
                 {
                     type: "slack",
                     name: "Slack Bridge",
-                    avatarUrl: "/img/avatars/slack.png",
+                    avatarUrl: "/_dimension/img/avatars/slack.png",
                     isEnabled: true,
                     isPublic: true,
                     description: "Bridges Slack channels to Matrix",

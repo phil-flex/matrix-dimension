@@ -10,14 +10,14 @@ export class WebhooksApiService extends AuthedApi {
     }
 
     public createWebhook(roomId: string, options: FE_WebhookOptions): Promise<FE_Webhook> {
-        return this.authedPost("/api/v1/dimension/webhooks/room/" + roomId + "/webhooks/new", options).map(r => r.json()).toPromise();
+        return this.authedPost("/_dimension/api/v1/dimension/webhooks/room/" + roomId + "/webhooks/new", options).map(r => r.json()).toPromise();
     }
 
     public updateWebhook(roomId: string, hookId: string, options: FE_WebhookOptions): Promise<FE_Webhook> {
-        return this.authedPost("/api/v1/dimension/webhooks/room/" + roomId + "/webhooks/" + hookId, options).map(r => r.json()).toPromise();
+        return this.authedPost("/_dimension/api/v1/dimension/webhooks/room/" + roomId + "/webhooks/" + hookId, options).map(r => r.json()).toPromise();
     }
 
     public deleteWebhook(roomId: string, hookId: string): Promise<any> {
-        return this.authedDelete("/api/v1/dimension/webhooks/room/" + roomId + "/webhooks/" + hookId).map(r => r.json()).toPromise();
+        return this.authedDelete("/_dimension/api/v1/dimension/webhooks/room/" + roomId + "/webhooks/" + hookId).map(r => r.json()).toPromise();
     }
 }

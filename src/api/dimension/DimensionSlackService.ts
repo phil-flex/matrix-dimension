@@ -13,7 +13,7 @@ interface BridgeRoomRequest {
 /**
  * API for interacting with the Slack bridge
  */
-@Path("/api/v1/dimension/slack")
+@Path("/_dimension/api/v1/dimension/slack")
 export class DimensionSlackService {
 
     @GET

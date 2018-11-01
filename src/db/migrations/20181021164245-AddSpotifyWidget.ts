@@ -7,7 +7,7 @@ export default {
                 {
                     type: "spotify",
                     name: "Spotify",
-                    avatarUrl: "/img/avatars/spotify.png",
+                    avatarUrl: "/_dimension/img/avatars/spotify.png",
                     isEnabled: true,
                     isPublic: true,
                     description: "Share music with the room",

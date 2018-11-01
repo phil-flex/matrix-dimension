@@ -10,15 +10,15 @@ export class TelegramApiService extends AuthedApi {
     }
 
     public getPortalInfo(chatId: number, roomId: string): Promise<FE_PortalInfo> {
-        return this.authedGet("/api/v1/dimension/telegram/chat/" + chatId, {roomId: roomId}).map(r => r.json()).toPromise();
+        return this.authedGet("/_dimension/api/v1/dimension/telegram/chat/" + chatId, {roomId: roomId}).map(r => r.json()).toPromise();
     }
 
     public bridgeRoom(roomId: string, chatId: number, unbridgeOtherPortals = false): Promise<FE_PortalInfo> {
-        return this.authedPost("/api/v1/dimension/telegram/chat/" + chatId + "/room/" + roomId, {unbridgeOtherPortals})
+        return this.authedPost("/_dimension/api/v1/dimension/telegram/chat/" + chatId + "/room/" + roomId, {unbridgeOtherPortals})
             .map(r => r.json()).toPromise();
     }
 
     public unbridgeRoom(roomId: string): Promise<FE_PortalInfo> {
-        return this.authedDelete("/api/v1/dimension/telegram/room/" + roomId).map(r => r.json()).toPromise();
+        return this.authedDelete("/_dimension/api/v1/dimension/telegram/room/" + roomId).map(r => r.json()).toPromise();
     }
 }

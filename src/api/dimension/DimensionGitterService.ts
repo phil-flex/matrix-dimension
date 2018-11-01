@@ -11,7 +11,7 @@ interface BridgeRoomRequest {
 /**
  * API for interacting with the Gitter bridge
  */
-@Path("/api/v1/dimension/gitter")
+@Path("/_dimension/api/v1/dimension/gitter")
 export class DimensionGitterService {
 
     @GET
