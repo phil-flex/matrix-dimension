@@ -1,15 +1,14 @@
-var path = require("path");
-var webpack = require("webpack");
+const path = require("path");
+const webpack = require("webpack");
 
-var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-var isProd = process.env.npm_lifecycle_event.startsWith('build');
+const isProd = process.env.npm_lifecycle_event.startsWith('build');
 
 module.exports = function () {
-    var config = {};
+    const config = {};
 
     if (isProd) config.devtool = 'source-map';
     else config.devtool = 'eval-source-map';
@@ -35,7 +34,20 @@ module.exports = function () {
         rules: [
             {
                 test: /\.ts$/,
-                loaders: ['awesome-typescript-loader', 'angular2-template-loader', '@angularclass/hmr-loader'],
+                loaders: [{
+                    loader: 'awesome-typescript-loader',
+                    options: {
+                        useCache: true,
+                        useBabel: true,
+                        babelOptions: {
+                            babelrc: false,
+                            presets: [
+                                ["@babel/preset-env", {"targets": "last 2 versions, ie 11", "modules": false}]
+                            ],
+                        },
+                        babelCore: "@babel/core",
+                    },
+                }, 'angular2-template-loader', '@angularclass/hmr-loader'],
                 exclude: [/node_modules\/(?!(ng2-.+))/]
             },
             {
@@ -43,13 +55,16 @@ module.exports = function () {
                 loader: 'file-loader?name=fonts/[name].[hash].[ext]?'
             },
             {
-                test: /\.json$/,
-                loader: 'json-loader'
-            },
-            {
                 test: /\.css$/,
                 exclude: root('web', 'app'),
-                loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: ['css-loader', 'postcss-loader']})
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {}
+                    },
+                    "css-loader",
+                    "postcss-loader"
+                ]
             },
             {
                 test: /\.css$/,
@@ -58,10 +73,15 @@ module.exports = function () {
             {
                 test: /\.(scss|sass)$/,
                 exclude: root('web', 'app'),
-                loader: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader', 'sass-loader']
-                })
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {}
+                    },
+                    "css-loader",
+                    "postcss-loader",
+                    "sass-loader"
+                ]
             },
             {
                 test: /\.(scss|sass)$/,
@@ -88,7 +108,8 @@ module.exports = function () {
         new webpack.ContextReplacementPlugin(
             /angular(\\|\/)core(\\|\/)@angular/,
             root('./web') // location of your src
-        ), new webpack.LoaderOptionsPlugin({
+        ),
+        new webpack.LoaderOptionsPlugin({
             options: {
                 tslint: {
                     emitErrors: false,
@@ -99,22 +120,22 @@ module.exports = function () {
                 }
             }
         }),
-        new CommonsChunkPlugin({
-            name: ['vendor', 'polyfills']
-        }), new HtmlWebpackPlugin({
+        new HtmlWebpackPlugin({
             template: './web/public/index.html',
             chunksSortMode: 'dependency'
-        }),
-        new ExtractTextPlugin({filename: 'css/[name].[hash].css', disable: !isProd})
+        })
     ];
 
     if (isProd) {
         config.plugins.push(
-            new webpack.NoEmitOnErrorsPlugin(),
-            new webpack.optimize.UglifyJsPlugin({sourceMap: true, mangle: {keep_fnames: true}}),
             new CopyWebpackPlugin([{
                 from: root('web/public')
             }])
+        );
+        config.plugins.push(
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].[hash].css',
+            })
         );
     }
 
