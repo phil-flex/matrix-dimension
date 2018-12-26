@@ -37,7 +37,7 @@ export class WebhooksBridge {
         const bridge = await this.getDefaultBridge();
 
         try {
-            const response = await this.doProvisionRequest<ListWebhooksResponse>(bridge, "GET", `/api/v1/provision/${roomId}/hooks`);
+            const response = await this.doProvisionRequest<ListWebhooksResponse>(bridge, "GET", `/_dimension/api/v1/provision/${roomId}/hooks`);
             if (!response.success) throw new Error("Failed to get webhooks");
             return response.results;
         } catch (e) {
@@ -48,17 +48,17 @@ export class WebhooksBridge {
 
     public async createWebhook(roomId: string, options: WebhookOptions): Promise<WebhookConfiguration> {
         const bridge = await this.getDefaultBridge();
-        return this.doProvisionRequest<WebhookResponse>(bridge, "PUT", `/api/v1/provision/${roomId}/hook`, null, options);
+        return this.doProvisionRequest<WebhookResponse>(bridge, "PUT", `/_dimension/api/v1/provision/${roomId}/hook`, null, options);
     }
 
     public async updateWebhook(roomId: string, hookId: string, options: WebhookOptions): Promise<WebhookConfiguration> {
         const bridge = await this.getDefaultBridge();
-        return this.doProvisionRequest<WebhookResponse>(bridge, "PUT", `/api/v1/provision/${roomId}/hook/${hookId}`, null, options);
+        return this.doProvisionRequest<WebhookResponse>(bridge, "PUT", `/_dimension/api/v1/provision/${roomId}/hook/${hookId}`, null, options);
     }
 
     public async deleteWebhook(roomId: string, hookId: string): Promise<any> {
         const bridge = await this.getDefaultBridge();
-        return this.doProvisionRequest<SuccessResponse>(bridge, "DELETE", `/api/v1/provision/${roomId}/hook/${hookId}`);
+        return this.doProvisionRequest<SuccessResponse>(bridge, "DELETE", `/_dimension/api/v1/provision/${roomId}/hook/${hookId}`);
     }
 
     private async doProvisionRequest<T>(bridge: WebhookBridgeRecord, method: string, endpoint: string, qs?: any, body?: any): Promise<T> {
