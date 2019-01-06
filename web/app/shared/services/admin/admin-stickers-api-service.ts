@@ -19,7 +19,7 @@ export class AdminStickersApiService extends AuthedApi {
     }
 
     public importFromTelegram(packUrl: string): Promise<FE_StickerPack> {
-        return this.authedPost("/api/v1/dimension/admin/stickers/packs/import/telegram", {packUrl: packUrl})
+        return this.authedPost("/_dimension/api/v1/dimension/admin/stickers/packs/import/telegram", {packUrl: packUrl})
             .map(r => r.json()).toPromise();
     }
 }
