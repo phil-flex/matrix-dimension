@@ -16,6 +16,7 @@ export interface DimensionConfig {
     widgetBlacklist: string[];
     database: {
         file: string;
+        botData: string;
     };
     admins: string[];
     goneb: {
@@ -25,6 +26,11 @@ export interface DimensionConfig {
     };
     telegram: {
         botToken: string;
+    };
+    stickers: {
+        enabled: boolean;
+        stickerBot: string;
+        managerUrl: string;
     };
     logging: LogConfig;
 }

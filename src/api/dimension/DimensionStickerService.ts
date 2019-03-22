@@ -5,6 +5,9 @@ import Sticker from "../../db/models/Sticker";
 import { ScalarService } from "../scalar/ScalarService";
 import UserStickerPack from "../../db/models/UserStickerPack";
 import { ApiError } from "../ApiError";
+import { StickerpackMetadataDownloader } from "../../utils/StickerpackMetadataDownloader";
+import { MatrixStickerBot } from "../../matrix/MatrixStickerBot";
+import config from "../../config";
 
 export interface MemoryStickerPack {
     id: number;
@@ -35,6 +38,7 @@ export interface MemoryStickerPack {
             height: number;
         };
     }[];
+    trackingRoomAlias: string;
 }
 
 export interface MemoryUserStickerPack extends MemoryStickerPack {
@@ -43,6 +47,16 @@ export interface MemoryUserStickerPack extends MemoryStickerPack {
 
 interface SetSelectedRequest {
     isSelected: boolean;
+}
+
+interface ImportPackRequest {
+    packUrl: string;
+}
+
+interface StickerConfig {
+    enabled: boolean;
+    stickerBot: string;
+    managerUrl: string;
 }
 
 /**
@@ -70,6 +84,18 @@ export class DimensionStickerService {
     }
 
     @GET
+    @Path("config")
+    public async getConfig(@QueryParam("scalar_token") scalarToken: string): Promise<StickerConfig> {
+        await ScalarService.getTokenOwner(scalarToken);
+
+        return {
+            enabled: config.stickers.enabled,
+            stickerBot: config.stickers.stickerBot,
+            managerUrl: config.stickers.managerUrl,
+        };
+    }
+
+    @GET
     @Path("packs")
     public async getStickerPacks(@QueryParam("scalar_token") scalarToken: string): Promise<MemoryStickerPack[]> {
         const userId = await ScalarService.getTokenOwner(scalarToken);
@@ -88,6 +114,7 @@ export class DimensionStickerService {
 
             const selectedPack = JSON.parse(JSON.stringify(pack));
             selectedPack.isSelected = userPack ? userPack.isSelected : false;
+            if (!selectedPack.isSelected && pack.trackingRoomAlias) continue;
             packs.push(selectedPack);
         }
 
@@ -117,6 +144,32 @@ export class DimensionStickerService {
         Cache.for(CACHE_STICKERS).del("packs_" + userId);
 
         return {}; // 200 OK
+    }
+
+    @POST
+    @Path("packs/import")
+    public async importPack(@QueryParam("scalar_token") scalarToken: string, request: ImportPackRequest): Promise<MemoryUserStickerPack> {
+        await ScalarService.getTokenOwner(scalarToken);
+
+        if (!config.stickers.enabled) {
+            throw new ApiError(400, "Custom stickerpacks are disabled on this homeserver");
+        }
+
+        const packUrl = request.packUrl.endsWith(".json") ? request.packUrl : `${request.packUrl}.json`;
+        const metadata = await StickerpackMetadataDownloader.getMetadata(packUrl);
+        await MatrixStickerBot.trackStickerpack(metadata.roomAlias);
+
+        const stickerPacks = await StickerPack.findAll({where: {trackingRoomAlias: metadata.roomAlias}});
+        Cache.for(CACHE_STICKERS).clear();
+
+        if (stickerPacks.length <= 0) throw new ApiError(500, "Stickerpack not imported");
+        const pack = stickerPacks[0];
+
+        // Simulate a call to setPackSelected
+        await this.setPackSelected(scalarToken, pack.id, {isSelected: true});
+
+        const memoryPack = await DimensionStickerService.packToMemory(pack);
+        return Object.assign({isSelected: true}, memoryPack);
     }
 
     public static async packToMemory(pack: StickerPack): Promise<MemoryStickerPack> {
@@ -152,6 +205,7 @@ export class DimensionStickerService {
                     },
                 }
             }),
+            trackingRoomAlias: pack.trackingRoomAlias,
         };
     }
 
