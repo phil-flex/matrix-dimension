@@ -18,6 +18,6 @@ export class ScalarServerApiService extends AuthedApi {
     }
 
     public register(openId: FE_ScalarOpenIdRequestBody): Promise<FE_ScalarRegisterResponse> {
-        return this.http.post("/api/v1/scalar/register", openId).map(res => res.json()).toPromise();
+        return this.http.post("/_dimension/api/v1/scalar/register", openId).map(res => res.json()).toPromise();
     }
 }

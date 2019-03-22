@@ -10,7 +10,7 @@ export class StickerApiService extends AuthedApi {
     }
 
     public getConfig(): Promise<FE_StickerConfig> {
-        return this.authedGet("/api/v1/dimension/stickers/config").map(r => r.json()).toPromise();
+        return this.authedGet("/_dimension/api/v1/dimension/stickers/config").map(r => r.json()).toPromise();
     }
 
     public getPacks(): Promise<FE_UserStickerPack[]> {
@@ -22,6 +22,6 @@ export class StickerApiService extends AuthedApi {
     }
 
     public importStickerpack(packUrl: string): Promise<FE_UserStickerPack> {
-        return this.authedPost("/api/v1/dimension/stickers/packs/import", {packUrl}).map(r => r.json()).toPromise();
+        return this.authedPost("/_dimension/api/v1/dimension/stickers/packs/import", {packUrl}).map(r => r.json()).toPromise();
     }
 }
