@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
 import { ScalarWidgetApi } from "../../shared/services/scalar/scalar-widget.api";
-import { Subscription } from "rxjs";
-import { CapableWidget } from "../capable-widget";
+import { CapableWidget, WIDGET_API_VERSION_OPENID } from "../capable-widget";
 import { ActivatedRoute } from "@angular/router";
 import { ScalarServerApiService } from "../../shared/services/scalar/scalar-server-api.service";
 import { SessionStorage } from "../../shared/SessionStorage";
@@ -21,9 +20,6 @@ export class ReauthExampleWidgetWrapperComponent extends CapableWidget implement
     public error = false;
     public stateMessage = "Checking client version...";
 
-    private widgetReplySubscription: Subscription;
-    private widgetRequestSubscription: Subscription;
-
     constructor(activatedRoute: ActivatedRoute,
                 private scalarApi: ScalarServerApiService,
                 private changeDetector: ChangeDetectorRef) {
@@ -37,95 +33,49 @@ export class ReauthExampleWidgetWrapperComponent extends CapableWidget implement
         return ScalarWidgetApi.widgetId;
     }
 
-    public ngOnInit(): void {
-        super.ngOnInit();
-        this.widgetReplySubscription = ScalarWidgetApi.replyReceived.subscribe(async response => {
-            const data = response.response;
-
-            if (response.action === "supported_api_versions") {
-                if (!data || !data.supported_versions) {
-                    this.stateMessage = "Invalid API version response";
-                    this.changeDetector.detectChanges();
-                    return;
-                }
-
-                if (data.supported_versions.indexOf("0.0.2") === -1) {
-                    this.stateMessage = "Your client is not supported by this widget.";
-                    this.changeDetector.detectChanges();
-                    return;
-                }
-
-                this.busy = false;
-                this.stateMessage = "";
-                this.changeDetector.detectChanges();
-                return;
-            }
-
-            if (response.action !== "get_openid") return;
-
-            try {
-                if (data.state === "request") {
-                    this.stateMessage = "Waiting for you to accept the prompt...";
-                } else if (data.state === "allowed") {
-                    await this.exchangeOpenIdInfo(data);
-                } else {
-                    this.blocked = true;
-                    this.busy = false;
-                    this.hasOpenId = false;
-                    this.stateMessage = null;
-                }
-            } catch (e) {
-                console.error(e);
-                this.error = true;
-                this.busy = false;
-                this.stateMessage = null;
-            }
-
-            this.changeDetector.detectChanges();
-        });
-
-        this.widgetRequestSubscription = ScalarWidgetApi.requestReceived.subscribe(async request => {
-            if (request.action !== "openid_credentials") return;
-            ScalarWidgetApi.replyAcknowledge(request);
-
-            try {
-                if (request.data.success) {
-                    await this.exchangeOpenIdInfo(request.data);
-                } else {
-                    this.blocked = true;
-                    this.busy = false;
-                    this.stateMessage = null;
-                }
-            } catch (e) {
-                console.error(e);
-                this.error = true;
-                this.busy = false;
-                this.stateMessage = null;
-            }
-
-            this.changeDetector.detectChanges();
-        });
+    protected onSupportedVersionsFound(): void {
+        super.onSupportedVersionsFound();
+        if (!this.doesSupportAtLeastVersion(WIDGET_API_VERSION_OPENID)) {
+            this.busy = true;
+            this.error = true;
+            this.hasOpenId = false;
+            this.blocked = false;
+            this.stateMessage = "Your client is too old to use this widget, sorry";
+        } else {
+            this.busy = false;
+            this.error = false;
+            this.hasOpenId = false;
+            this.blocked = false;
+            this.stateMessage = null;
+        }
+        this.changeDetector.detectChanges();
     }
 
-    public ngOnDestroy() {
-        super.ngOnDestroy();
-        if (this.widgetReplySubscription) this.widgetReplySubscription.unsubscribe();
-        if (this.widgetRequestSubscription) this.widgetRequestSubscription.unsubscribe();
-    }
-
-    protected onCapabilitiesSent(): void {
-        super.onCapabilitiesSent();
-
-        // Start a request for supported API versions
-        ScalarWidgetApi.requestSupportedVersions();
-    }
-
-    public onReauthStart(): void {
+    public async onReauthStart(): Promise<any> {
         this.busy = true;
         this.error = false;
         this.blocked = false;
         this.hasOpenId = false;
-        ScalarWidgetApi.requestOpenID();
+        this.stateMessage = "Please accept the prompt to verify your identity";
+
+        const response = await this.getOpenIdInfo();
+        if (response.blocked) {
+            this.busy = false;
+            this.blocked = true;
+            this.hasOpenId = false;
+            this.stateMessage = "";
+            return;
+        }
+
+        try {
+            await this.exchangeOpenIdInfo(response.openId);
+        } catch (e) {
+            console.error(e);
+            this.busy = false;
+            this.error = true;
+            this.hasOpenId = false;
+            this.stateMessage = "";
+        }
     }
 
     private async exchangeOpenIdInfo(openId: FE_ScalarOpenIdRequestBody) {
