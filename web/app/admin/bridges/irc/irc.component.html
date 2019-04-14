@@ -2,7 +2,7 @@
     <my-spinner></my-spinner>
 </div>
 <div *ngIf="!isLoading">
-    <my-ibox title="IRC Bridge Configurations">
+    <my-ibox boxTitle="IRC Bridge Configurations">
         <div class="my-ibox-content">
             <p>
                 <a href="https://github.com/matrix-org/matrix-appservice-irc" target="_blank">matrix-appservice-irc</a>
@@ -27,10 +27,14 @@
                         {{ bridge.upstreamId ? "matrix.org's bridge" : "Self-hosted bridge" }}
                         <span class="text-muted" style="display: inline-block;" *ngIf="!bridge.upstreamId">({{ bridge.provisionUrl }})</span>
                     </td>
-                    <td>
+                    <td *ngIf="bridge.isOnline">
                         {{ getEnabledNetworksString(bridge) }}
                     </td>
-                    <td class="text-center">
+                    <td *ngIf="!bridge.isOnline" class="error-text" colspan="2">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        This bridge is offline or unavailable.
+                    </td>
+                    <td class="text-center" *ngIf="bridge.isOnline">
                         <span class="editButton" (click)="editNetworks(bridge)">
                             <i class="fa fa-pencil-alt"></i>
                         </span>

@@ -25,7 +25,7 @@ export class WebhooksBridge {
 
     public async isBridgingEnabled(): Promise<boolean> {
         const bridges = await WebhookBridgeRecord.findAll({where: {isEnabled: true}});
-        return !!bridges;
+        return !!bridges && bridges.length > 0;
     }
 
     public async getBridgeInfo(): Promise<WebhookBridgeInfo> {
@@ -78,20 +78,25 @@ export class WebhooksBridge {
                 qs: qs,
                 json: body,
             }, (err, res, _body) => {
-                if (err) {
-                    LogService.error("WebhooksBridge", "Error calling" + url);
-                    LogService.error("WebhooksBridge", err);
-                    reject(err);
-                } else if (!res) {
-                    LogService.error("WebhooksBridge", "There is no response for " + url);
-                    reject(new Error("No response provided - is the service online?"));
-                } else if (res.statusCode !== 200) {
-                    LogService.error("WebhooksBridge", "Got status code " + res.statusCode + " when calling " + url);
-                    LogService.error("WebhooksBridge", res.body);
-                    reject(new Error("Request failed"));
-                } else {
-                    if (typeof(res.body) === "string") res.body = JSON.parse(res.body);
-                    resolve(res.body);
+                try {
+                    if (err) {
+                        LogService.error("WebhooksBridge", "Error calling" + url);
+                        LogService.error("WebhooksBridge", err);
+                        reject(err);
+                    } else if (!res) {
+                        LogService.error("WebhooksBridge", "There is no response for " + url);
+                        reject(new Error("No response provided - is the service online?"));
+                    } else if (res.statusCode !== 200) {
+                        LogService.error("WebhooksBridge", "Got status code " + res.statusCode + " when calling " + url);
+                        LogService.error("WebhooksBridge", res.body);
+                        reject(new Error("Request failed"));
+                    } else {
+                        if (typeof (res.body) === "string") res.body = JSON.parse(res.body);
+                        resolve(res.body);
+                    }
+                } catch (e) {
+                    LogService.error("WebhooksBridge", e);
+                    reject(e);
                 }
             });
         });
