@@ -93,6 +93,6 @@ export class TradingViewWidgetConfigComponent extends WidgetComponent {
     private setViewUrl(widget: EditableWidget) {
         const pair = this.pairs.find(p => p.value === widget.dimension.newData.pair);
         widget.dimension.newTitle = pair ? pair.label : null;
-        widget.dimension.newUrl = window.location.origin + "/widgets/tradingview?pair=$pair&interval=$interval";
+        widget.dimension.newUrl = window.location.origin + "/_dimension/widgets/tradingview?pair=$pair&interval=$interval";
     }
 }
