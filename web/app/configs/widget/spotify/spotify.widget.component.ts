@@ -25,6 +25,6 @@ export class SpotifyWidgetConfigComponent extends WidgetComponent {
     }
 
     private setSpotifyUrl(widget: EditableWidget) {
-        widget.dimension.newUrl = window.location.origin + "/widgets/spotify?uri=$uri";
+        widget.dimension.newUrl = window.location.origin + "/_dimension/widgets/spotify?uri=$uri";
     }
 }
