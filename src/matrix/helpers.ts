@@ -193,7 +193,8 @@ export async function doClientApiCall(method: string, endpoint: string, query?: 
             "Content-Type": contentType,
         };
     } else {
-        requestOptions["json"] = body;
+        requestOptions["json"] = true;
+        requestOptions["body"] = body;
     }
 
     return new Promise((resolve, reject) => {
